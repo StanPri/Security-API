@@ -1,0 +1,9 @@
+{
+  "TDC\\VisitorLog Admins": { "VL": "Admin" },
+  "TDC\\VisitorLog Guards": { "VL": "Guard" },
+  "TDC\\CTS Users": { "CTS": "User" },
+  "TDC\\SP BOW Members": { "VL": "Admin-cwk"},
+  "TDC\\NotAGroup": { "VL": "Guard-cwk"},
+  "TDC\\SP BPAS Members": { "CTS": "User-cwk"},
+  "TDC\\Chuck Norris User": { "CN": "User"}
+}
