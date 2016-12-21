@@ -1,11 +1,17 @@
 var cors            = require('cors'),
-    http            = require('http'),
+    https           = require('https'),
     express         = require('express'),
     errorhandler    = require('errorhandler'),
     dotenv          = require('dotenv'),
-    bodyParser      = require('body-parser');
+    bodyParser      = require('body-parser'),
+    fs              = require('fs');
 
 var app = express();
+
+var options = {
+  key  : fs.readFileSync('./bpasapi_technology_ca_gov.key'),
+  cert : fs.readFileSync('./bpasapi_technology_ca_gov_cert.cer')
+};
 
 dotenv.config({silent: true});
 var environment = process.env.NODE_ENV || 'development';
@@ -30,6 +36,6 @@ app.use(function(err, req, res, next) {
 app.use(require('./tokenRoutes'));
 app.use(require('./secureRoutes'));
 
-http.createServer(app).listen(port, function (err) {
+https.createServer(options, app).listen(port, function (err) {
   console.log('Listening at http://localhost:' + port + ' in ' + environment + ' mode.');
 });

@@ -29,15 +29,15 @@
   },
   "dependencies": {
     "body-parser": "*",
-    "compression": "*",
     "cors": "*",
     "dotenv": "*",
     "errorhandler": "*",
     "express": "*",
     "express-jwt": "*",
+    "fs": "*",
+    "https": "*",
     "jsonwebtoken": "*",
     "lodash": "*",
-    "morgan": "*",
     "node-sspi": "*"
   },
   "devDependencies": {

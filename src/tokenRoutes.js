@@ -23,7 +23,10 @@ app.get('/createToken', function (req, res, next) {
   });
 }, function (req, res) {
   var userGroups = req.connection.userGroups;
+  var user = { "sub": req.connection.user };
   var userClaims = {};
+  // Add user name to the claims variable.
+  _.assign(userClaims, user);
   // Checks each userGroup for an assigned role in rolesDB, adding app name and
   // role to the claims variable.
   userGroups.forEach(function(userGroup) {

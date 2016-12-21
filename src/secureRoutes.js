@@ -14,6 +14,7 @@ app.use('/sec', jwtCheck);
 app.get('/sec/quote', function(req, res) {
   if (req.user.CN=="User") {
     res.status(200).send(quoter.getRandomOne());
-  }
+  } else {
   return res.sendStatus(401);
+  }
 });
