@@ -9,8 +9,8 @@ var cors            = require('cors'),
 var app = express();
 
 var options = {
-  key  : fs.readFileSync('./bpasapi_technology_ca_gov.key'),
-  cert : fs.readFileSync('./bpasapi_technology_ca_gov_cert.cer')
+  key  : fs.readFileSync('./star_api_technology_ca_gov.key'),
+  cert : fs.readFileSync('./star_api_technology_ca_gov_cert.cer')
 };
 
 dotenv.config({silent: true});
@@ -23,7 +23,13 @@ if (environment === 'development') {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors());
+
+var corsOptions = {
+  credentials: true,
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions));
 
 app.use(function(err, req, res, next) {
   if (err.name === 'StatusError') {

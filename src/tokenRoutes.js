@@ -27,10 +27,17 @@ app.get('/createToken', function (req, res, next) {
   var userClaims = {};
   // Add user name to the claims variable.
   _.assign(userClaims, user);
-  // Checks each userGroup for an assigned role in rolesDB, adding app name and
-  // role to the claims variable.
-  userGroups.forEach(function(userGroup) {
-    if (rolesDB[userGroup]) { _.assign(userClaims, rolesDB[userGroup]); }
+  // For each claim defined in rolesDC, checks if the user is in the group and
+  // creates a claims if they are.
+  Object.keys(rolesDB).forEach(function(role) {
+    if (_.includes(userGroups, role)) {
+      Object.keys(rolesDB[role]).forEach(function(key) {
+        if (!userClaims[key]) {
+          userClaims[key] = [];
+        }
+        userClaims[key].push(rolesDB[role][key]);
+      });
+    }
   });
   // Sends the JWT to the user as id_token in the body of the response.
   res.status(201).send({ id_token: createToken(userClaims) });
