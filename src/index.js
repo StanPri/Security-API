@@ -1,21 +1,16 @@
 var cors            = require('cors'),
-    https           = require('https'),
+    http            = require('http'),
     express         = require('express'),
     errorhandler    = require('errorhandler'),
     dotenv          = require('dotenv'),
     bodyParser      = require('body-parser'),
-    fs              = require('fs');
+    fs              = require('file-system');
 
 var app = express();
 
-var options = {
-  key  : fs.readFileSync('./star_api_technology_ca_gov.key'),
-  cert : fs.readFileSync('./star_api_technology_ca_gov_cert.cer')
-};
-
 dotenv.config({silent: true});
 var environment = process.env.NODE_ENV || 'development';
-var port = process.env.NODE_PORT || '3001';
+var port = process.env.PORT || '3001';
 
 if (environment === 'development') {
   app.use(errorhandler())
@@ -26,9 +21,10 @@ app.use(bodyParser.json());
 
 var corsOptions = {
   credentials: true,
-  origin: 'http://localhost:3000',
+  origin: true,
   optionsSuccessStatus: 200
 }
+
 app.use(cors(corsOptions));
 
 app.use(function(err, req, res, next) {
@@ -40,8 +36,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.use(require('./tokenRoutes'));
-app.use(require('./secureRoutes'));
 
-https.createServer(options, app).listen(port, function (err) {
+http.createServer(app).listen(port, function (err) {
   console.log('Listening at http://localhost:' + port + ' in ' + environment + ' mode.');
 });

@@ -23,7 +23,8 @@ app.get('/createToken', function (req, res, next) {
   });
 }, function (req, res) {
   var userGroups = req.connection.userGroups;
-  var user = { "sub": req.connection.user };
+  var userName = (req.connection.user).substring(4);
+  var user = { "sub": userName };
   var userClaims = {};
   // Add user name to the claims variable.
   _.assign(userClaims, user);

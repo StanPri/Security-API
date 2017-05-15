@@ -1,8 +1,5 @@
 {
-  "TDC\\VisitorLog Admins": { "VL": "Admin" },
-  "TDC\\VisitorLog Guards": { "VL": "Guard" },
-  "TDC\\Chuck Norris User": { "CN": "User" },
-  "TDC\\Domain Users": { "BARS": "User" },
-  "TDC\\BARS Manager": { "BARS": "Manager" },
+  "TDC\\Employee Directory": { "BARS": "User" },
+  "TDC\\BARS Guards": { "BARS": "Guard" },
   "TDC\\BARS Security": { "BARS": "Security" }
 }
